@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "51cbdbf9-ff79-4332-a220-8200e3b8988c",
+		"_postman_id": "e48a8619-5cbc-4538-9fce-721caeb05d2a",
 		"name": "Api to collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1729413581"
+		"_exporter_id": "1729499373"
 	},
 	"item": [
 		{
@@ -67,10 +67,10 @@
 			"response": null
 		},
 		{
-			"name": "self-order",
+			"name": "Self Order",
 			"item": [
 				{
-					"name": "update-status",
+					"name": "Update Status",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -129,10 +129,10 @@
 			"response": null
 		},
 		{
-			"name": "account",
+			"name": "Account",
 			"item": [
 				{
-					"name": "stores",
+					"name": "Stores",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -172,7 +172,7 @@
 					"response": null
 				},
 				{
-					"name": "switchuser",
+					"name": "Switchuser",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -212,7 +212,7 @@
 					"response": null
 				},
 				{
-					"name": "sync",
+					"name": "Sync",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -252,7 +252,7 @@
 					"response": null
 				},
 				{
-					"name": "new",
+					"name": "New",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -315,10 +315,10 @@
 			"response": null
 		},
 		{
-			"name": "bank-swift",
+			"name": "Bank Swift",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -379,10 +379,10 @@
 			"response": null
 		},
 		{
-			"name": "brand",
+			"name": "Brand",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -443,10 +443,10 @@
 			"response": null
 		},
 		{
-			"name": "cashlez-payment",
+			"name": "Cashlez Payment",
 			"item": [
 				{
-					"name": "aggregator-info",
+					"name": "Aggregator Info",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -508,10 +508,10 @@
 			"response": null
 		},
 		{
-			"name": "category",
+			"name": "Category",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -572,10 +572,10 @@
 			"response": null
 		},
 		{
-			"name": "country",
+			"name": "Country",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -636,10 +636,10 @@
 			"response": null
 		},
 		{
-			"name": "customer",
+			"name": "Customer",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -678,7 +678,7 @@
 					"response": null
 				},
 				{
-					"name": "check-credit-limit",
+					"name": "Check Credit Limit",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -718,7 +718,7 @@
 					"response": null
 				},
 				{
-					"name": "store",
+					"name": "Store",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -758,7 +758,7 @@
 					"response": null
 				},
 				{
-					"name": "update",
+					"name": "Update",
 					"item": null,
 					"request": {
 						"method": "PUT",
@@ -781,7 +781,7 @@
 								"{domain}",
 								"{locale}",
 								"customer",
-								"{id}"
+								"update"
 							],
 							"query": null
 						},
@@ -798,7 +798,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -821,7 +821,7 @@
 								"{domain}",
 								"{locale}",
 								"customer",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -838,7 +838,7 @@
 					"response": null
 				},
 				{
-					"name": "destroy",
+					"name": "Destroy",
 					"item": null,
 					"request": {
 						"method": "DELETE",
@@ -861,7 +861,7 @@
 								"{domain}",
 								"{locale}",
 								"customer",
-								"{id}"
+								"destroy"
 							],
 							"query": null
 						},
@@ -900,10 +900,10 @@
 			"response": null
 		},
 		{
-			"name": "customer-type",
+			"name": "Customer Type",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -964,10 +964,10 @@
 			"response": null
 		},
 		{
-			"name": "{id}",
+			"name": "{Id}",
 			"item": [
 				{
-					"name": "check-deposit",
+					"name": "Check Deposit",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1008,7 +1008,7 @@
 					"response": null
 				},
 				{
-					"name": "check-points",
+					"name": "Check Points",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1049,7 +1049,7 @@
 					"response": null
 				},
 				{
-					"name": "check-points-options",
+					"name": "Check Points Options",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1090,7 +1090,7 @@
 					"response": null
 				},
 				{
-					"name": "order-history",
+					"name": "Order History",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1131,7 +1131,7 @@
 					"response": null
 				},
 				{
-					"name": "send-mail",
+					"name": "Send Mail",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1194,10 +1194,10 @@
 			"response": null
 		},
 		{
-			"name": "dana-payment",
+			"name": "Dana Payment",
 			"item": [
 				{
-					"name": "generate-qris",
+					"name": "Generate Qris",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1259,10 +1259,10 @@
 			"response": null
 		},
 		{
-			"name": "discount-voucher",
+			"name": "Discount Voucher",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1301,7 +1301,7 @@
 					"response": null
 				},
 				{
-					"name": "check",
+					"name": "Check",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1363,10 +1363,10 @@
 			"response": null
 		},
 		{
-			"name": "gopay-payment",
+			"name": "Gopay Payment",
 			"item": [
 				{
-					"name": "check",
+					"name": "Check",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1406,7 +1406,7 @@
 					"response": null
 				},
 				{
-					"name": "pay",
+					"name": "Pay",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1446,7 +1446,7 @@
 					"response": null
 				},
 				{
-					"name": "token",
+					"name": "Token",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1508,10 +1508,10 @@
 			"response": null
 		},
 		{
-			"name": "inex-trans",
+			"name": "Inex Trans",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1550,7 +1550,7 @@
 					"response": null
 				},
 				{
-					"name": "posting",
+					"name": "Posting",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1590,7 +1590,7 @@
 					"response": null
 				},
 				{
-					"name": "update-attachments",
+					"name": "Update Attachments",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1630,7 +1630,7 @@
 					"response": null
 				},
 				{
-					"name": "upload",
+					"name": "Upload",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -1670,7 +1670,7 @@
 					"response": null
 				},
 				{
-					"name": "update",
+					"name": "Update",
 					"item": null,
 					"request": {
 						"method": "PUT",
@@ -1693,7 +1693,7 @@
 								"{domain}",
 								"{locale}",
 								"inex-trans",
-								"{id}"
+								"update"
 							],
 							"query": null
 						},
@@ -1710,7 +1710,7 @@
 					"response": null
 				},
 				{
-					"name": "destroy",
+					"name": "Destroy",
 					"item": null,
 					"request": {
 						"method": "DELETE",
@@ -1733,7 +1733,7 @@
 								"{domain}",
 								"{locale}",
 								"inex-trans",
-								"{id}"
+								"destroy"
 							],
 							"query": null
 						},
@@ -1750,7 +1750,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1773,7 +1773,7 @@
 								"{domain}",
 								"{locale}",
 								"inex-trans",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -1812,10 +1812,10 @@
 			"response": null
 		},
 		{
-			"name": "inex-transtype",
+			"name": "Inex Transtype",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1854,7 +1854,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1877,7 +1877,7 @@
 								"{domain}",
 								"{locale}",
 								"inex-transtype",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -1916,10 +1916,10 @@
 			"response": null
 		},
 		{
-			"name": "master-data",
+			"name": "Master Data",
 			"item": [
 				{
-					"name": "product-groups",
+					"name": "Product Groups",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -1960,7 +1960,7 @@
 					"response": null
 				},
 				{
-					"name": "sync",
+					"name": "Sync",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -2023,10 +2023,10 @@
 			"response": null
 		},
 		{
-			"name": "restolayout",
+			"name": "Restolayout",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -2066,7 +2066,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -2090,7 +2090,7 @@
 								"{locale}",
 								"localserver",
 								"restolayout",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -2129,10 +2129,10 @@
 			"response": null
 		},
 		{
-			"name": "items-blocking",
+			"name": "Items Blocking",
 			"item": [
 				{
-					"name": "itemsBlocking",
+					"name": "Itemsblocking",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2157,7 +2157,7 @@
 								"localserver",
 								"restolayout",
 								"items-blocking",
-								"{id}"
+								"itemsBlocking"
 							],
 							"query": null
 						},
@@ -2196,10 +2196,10 @@
 			"response": null
 		},
 		{
-			"name": "salesorder",
+			"name": "Salesorder",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -2239,7 +2239,7 @@
 					"response": null
 				},
 				{
-					"name": "ack-loaded",
+					"name": "Ack Loaded",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2280,7 +2280,7 @@
 					"response": null
 				},
 				{
-					"name": "incompleteds",
+					"name": "Incompleteds",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -2321,7 +2321,7 @@
 					"response": null
 				},
 				{
-					"name": "move-table",
+					"name": "Move Table",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2362,7 +2362,7 @@
 					"response": null
 				},
 				{
-					"name": "pay-orders",
+					"name": "Pay Orders",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2403,7 +2403,7 @@
 					"response": null
 				},
 				{
-					"name": "posting",
+					"name": "Posting",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2444,7 +2444,7 @@
 					"response": null
 				},
 				{
-					"name": "unpaid",
+					"name": "Unpaid",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -2485,7 +2485,7 @@
 					"response": null
 				},
 				{
-					"name": "verify-stock",
+					"name": "Verify Stock",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2526,7 +2526,7 @@
 					"response": null
 				},
 				{
-					"name": "void",
+					"name": "Void",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2567,7 +2567,7 @@
 					"response": null
 				},
 				{
-					"name": "update",
+					"name": "Update",
 					"item": null,
 					"request": {
 						"method": "PUT",
@@ -2591,7 +2591,7 @@
 								"{locale}",
 								"localserver",
 								"salesorder",
-								"{id}"
+								"update"
 							],
 							"query": null
 						},
@@ -2608,7 +2608,7 @@
 					"response": null
 				},
 				{
-					"name": "posting",
+					"name": "Posting",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2648,7 +2648,7 @@
 					"response": null
 				},
 				{
-					"name": "send-receipt",
+					"name": "Send Receipt",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2688,7 +2688,7 @@
 					"response": null
 				},
 				{
-					"name": "send-report",
+					"name": "Send Report",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2728,7 +2728,7 @@
 					"response": null
 				},
 				{
-					"name": "send-sms-receipt",
+					"name": "Send Sms Receipt",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2768,7 +2768,7 @@
 					"response": null
 				},
 				{
-					"name": "validate-max-deposit",
+					"name": "Validate Max Deposit",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -2830,10 +2830,10 @@
 			"response": null
 		},
 		{
-			"name": "log",
+			"name": "Log",
 			"item": [
 				{
-					"name": "ovo-transactions",
+					"name": "Ovo Transactions",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -2895,10 +2895,10 @@
 			"response": null
 		},
 		{
-			"name": "master-deposit",
+			"name": "Master Deposit",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -2959,10 +2959,10 @@
 			"response": null
 		},
 		{
-			"name": "netzme-payment",
+			"name": "Netzme Payment",
 			"item": [
 				{
-					"name": "acknowledge",
+					"name": "Acknowledge",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3002,7 +3002,7 @@
 					"response": null
 				},
 				{
-					"name": "check",
+					"name": "Check",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3042,7 +3042,7 @@
 					"response": null
 				},
 				{
-					"name": "pay",
+					"name": "Pay",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3104,10 +3104,10 @@
 			"response": null
 		},
 		{
-			"name": "notification",
+			"name": "Notification",
 			"item": [
 				{
-					"name": "count",
+					"name": "Count",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -3147,7 +3147,7 @@
 					"response": null
 				},
 				{
-					"name": "count-self-order",
+					"name": "Count Self Order",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -3187,7 +3187,7 @@
 					"response": null
 				},
 				{
-					"name": "login-status",
+					"name": "Login Status",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3227,7 +3227,7 @@
 					"response": null
 				},
 				{
-					"name": "marketplace",
+					"name": "Marketplace",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -3267,7 +3267,7 @@
 					"response": null
 				},
 				{
-					"name": "self-order",
+					"name": "Self Order",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -3307,7 +3307,7 @@
 					"response": null
 				},
 				{
-					"name": "status",
+					"name": "Status",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3347,7 +3347,7 @@
 					"response": null
 				},
 				{
-					"name": "stock-warning",
+					"name": "Stock Warning",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -3387,7 +3387,7 @@
 					"response": null
 				},
 				{
-					"name": "subscribe",
+					"name": "Subscribe",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3427,7 +3427,7 @@
 					"response": null
 				},
 				{
-					"name": "unsubscribe",
+					"name": "Unsubscribe",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3489,10 +3489,10 @@
 			"response": null
 		},
 		{
-			"name": "online-source-order",
+			"name": "Online Source Order",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -3553,10 +3553,10 @@
 			"response": null
 		},
 		{
-			"name": "online",
+			"name": "Online",
 			"item": [
 				{
-					"name": "working-hours",
+					"name": "Working Hours",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3596,7 +3596,7 @@
 					"response": null
 				},
 				{
-					"name": "working-hours",
+					"name": "Working Hours",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -3658,10 +3658,10 @@
 			"response": null
 		},
 		{
-			"name": "otp-void",
+			"name": "Otp Void",
 			"item": [
 				{
-					"name": "send-email",
+					"name": "Send Email",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3701,7 +3701,7 @@
 					"response": null
 				},
 				{
-					"name": "verify",
+					"name": "Verify",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3763,10 +3763,10 @@
 			"response": null
 		},
 		{
-			"name": "ovo-payment-old",
+			"name": "Ovo Payment Old",
 			"item": [
 				{
-					"name": "acknowledge",
+					"name": "Acknowledge",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3806,7 +3806,7 @@
 					"response": null
 				},
 				{
-					"name": "check",
+					"name": "Check",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3846,7 +3846,7 @@
 					"response": null
 				},
 				{
-					"name": "pay",
+					"name": "Pay",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3886,7 +3886,7 @@
 					"response": null
 				},
 				{
-					"name": "refund",
+					"name": "Refund",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3948,10 +3948,10 @@
 			"response": null
 		},
 		{
-			"name": "ovo-payment",
+			"name": "Ovo Payment",
 			"item": [
 				{
-					"name": "acknowledge",
+					"name": "Acknowledge",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -3991,7 +3991,7 @@
 					"response": null
 				},
 				{
-					"name": "check",
+					"name": "Check",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -4031,7 +4031,7 @@
 					"response": null
 				},
 				{
-					"name": "pay",
+					"name": "Pay",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -4071,7 +4071,7 @@
 					"response": null
 				},
 				{
-					"name": "refund",
+					"name": "Refund",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -4133,10 +4133,10 @@
 			"response": null
 		},
 		{
-			"name": "pos-additional-page",
+			"name": "Pos Additional Page",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4175,7 +4175,7 @@
 					"response": null
 				},
 				{
-					"name": "additional-groups",
+					"name": "Additional Groups",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4215,7 +4215,7 @@
 					"response": null
 				},
 				{
-					"name": "special-types",
+					"name": "Special Types",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4255,7 +4255,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4278,7 +4278,7 @@
 								"{domain}",
 								"{locale}",
 								"pos-additional-page",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -4295,7 +4295,7 @@
 					"response": null
 				},
 				{
-					"name": "update",
+					"name": "Update",
 					"item": null,
 					"request": {
 						"method": "PUT",
@@ -4318,7 +4318,7 @@
 								"{domain}",
 								"{locale}",
 								"pos-additional-page",
-								"{id}"
+								"update"
 							],
 							"query": null
 						},
@@ -4335,7 +4335,7 @@
 					"response": null
 				},
 				{
-					"name": "destroy",
+					"name": "Destroy",
 					"item": null,
 					"request": {
 						"method": "DELETE",
@@ -4358,7 +4358,7 @@
 								"{domain}",
 								"{locale}",
 								"pos-additional-page",
-								"{id}"
+								"destroy"
 							],
 							"query": null
 						},
@@ -4397,10 +4397,10 @@
 			"response": null
 		},
 		{
-			"name": "{locale}",
+			"name": "{Locale}",
 			"item": [
 				{
-					"name": "pos-additional-page",
+					"name": "Pos Additional Page",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -4461,10 +4461,10 @@
 			"response": null
 		},
 		{
-			"name": "pos-payment-mode",
+			"name": "Pos Payment Mode",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4503,7 +4503,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4526,7 +4526,7 @@
 								"{domain}",
 								"{locale}",
 								"pos-payment-mode",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -4565,10 +4565,10 @@
 			"response": null
 		},
 		{
-			"name": "instructions",
+			"name": "Instructions",
 			"item": [
 				{
-					"name": "instrunctions",
+					"name": "Instrunctions",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4592,7 +4592,7 @@
 								"{locale}",
 								"pos-payment-mode",
 								"instructions",
-								"{id}"
+								"instrunctions"
 							],
 							"query": null
 						},
@@ -4631,10 +4631,10 @@
 			"response": null
 		},
 		{
-			"name": "product",
+			"name": "Product",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4673,7 +4673,7 @@
 					"response": null
 				},
 				{
-					"name": "serials",
+					"name": "Serials",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4713,7 +4713,7 @@
 					"response": null
 				},
 				{
-					"name": "serials-check",
+					"name": "Serials Check",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -4753,7 +4753,7 @@
 					"response": null
 				},
 				{
-					"name": "stock-sync",
+					"name": "Stock Sync",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4793,7 +4793,7 @@
 					"response": null
 				},
 				{
-					"name": "store",
+					"name": "Store",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -4833,7 +4833,7 @@
 					"response": null
 				},
 				{
-					"name": "upload",
+					"name": "Upload",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -4873,7 +4873,7 @@
 					"response": null
 				},
 				{
-					"name": "variant-stock-sync",
+					"name": "Variant Stock Sync",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4913,7 +4913,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -4936,7 +4936,7 @@
 								"{domain}",
 								"{locale}",
 								"product",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -4953,7 +4953,7 @@
 					"response": null
 				},
 				{
-					"name": "update",
+					"name": "Update",
 					"item": null,
 					"request": {
 						"method": "PUT",
@@ -4976,7 +4976,7 @@
 								"{domain}",
 								"{locale}",
 								"product",
-								"{id}"
+								"update"
 							],
 							"query": null
 						},
@@ -4993,7 +4993,7 @@
 					"response": null
 				},
 				{
-					"name": "destroy",
+					"name": "Destroy",
 					"item": null,
 					"request": {
 						"method": "DELETE",
@@ -5016,7 +5016,7 @@
 								"{domain}",
 								"{locale}",
 								"product",
-								"{id}"
+								"destroy"
 							],
 							"query": null
 						},
@@ -5055,10 +5055,10 @@
 			"response": null
 		},
 		{
-			"name": "product-combo",
+			"name": "Product Combo",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -5097,7 +5097,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -5120,7 +5120,7 @@
 								"{domain}",
 								"{locale}",
 								"product-combo",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -5159,10 +5159,10 @@
 			"response": null
 		},
 		{
-			"name": "product-group",
+			"name": "Product Group",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -5201,7 +5201,7 @@
 					"response": null
 				},
 				{
-					"name": "move",
+					"name": "Move",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -5241,7 +5241,7 @@
 					"response": null
 				},
 				{
-					"name": "store",
+					"name": "Store",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -5281,7 +5281,7 @@
 					"response": null
 				},
 				{
-					"name": "update",
+					"name": "Update",
 					"item": null,
 					"request": {
 						"method": "PUT",
@@ -5304,7 +5304,7 @@
 								"{domain}",
 								"{locale}",
 								"product-group",
-								"{id}"
+								"update"
 							],
 							"query": null
 						},
@@ -5321,7 +5321,7 @@
 					"response": null
 				},
 				{
-					"name": "destroy",
+					"name": "Destroy",
 					"item": null,
 					"request": {
 						"method": "DELETE",
@@ -5344,7 +5344,7 @@
 								"{domain}",
 								"{locale}",
 								"product-group",
-								"{id}"
+								"destroy"
 							],
 							"query": null
 						},
@@ -5383,10 +5383,10 @@
 			"response": null
 		},
 		{
-			"name": "product-variant",
+			"name": "Product Variant",
 			"item": [
 				{
-					"name": "destroy",
+					"name": "Destroy",
 					"item": null,
 					"request": {
 						"method": "DELETE",
@@ -5409,7 +5409,7 @@
 								"{domain}",
 								"{locale}",
 								"product-variant",
-								"{id}"
+								"destroy"
 							],
 							"query": null
 						},
@@ -5448,10 +5448,10 @@
 			"response": null
 		},
 		{
-			"name": "all-variant",
+			"name": "All Variant",
 			"item": [
 				{
-					"name": "destroyVariantLabel",
+					"name": "Destroyvariantlabel",
 					"item": null,
 					"request": {
 						"method": "DELETE",
@@ -5475,7 +5475,7 @@
 								"{locale}",
 								"product",
 								"all-variant",
-								"{id}"
+								"destroyVariantLabel"
 							],
 							"query": null
 						},
@@ -5514,10 +5514,10 @@
 			"response": null
 		},
 		{
-			"name": "report",
+			"name": "Report",
 			"item": [
 				{
-					"name": "sales-closing",
+					"name": "Sales Closing",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -5579,10 +5579,10 @@
 			"response": null
 		},
 		{
-			"name": "detail",
+			"name": "Detail",
 			"item": [
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -5606,7 +5606,7 @@
 								"{locale}",
 								"salesorder",
 								"detail",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -5645,10 +5645,10 @@
 			"response": null
 		},
 		{
-			"name": "gosend-cancel-order",
+			"name": "Gosend Cancel Order",
 			"item": [
 				{
-					"name": "gosendCancelOrder",
+					"name": "Gosendcancelorder",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -5672,7 +5672,7 @@
 								"{locale}",
 								"salesorder",
 								"gosend-cancel-order",
-								"{id}"
+								"gosendCancelOrder"
 							],
 							"query": null
 						},
@@ -5711,10 +5711,10 @@
 			"response": null
 		},
 		{
-			"name": "history",
+			"name": "History",
 			"item": [
 				{
-					"name": "gosendOrderHistory",
+					"name": "Gosendorderhistory",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -5739,7 +5739,7 @@
 								"salesorder",
 								"gosend-order",
 								"history",
-								"{id}"
+								"gosendOrderHistory"
 							],
 							"query": null
 						},
@@ -5778,10 +5778,10 @@
 			"response": null
 		},
 		{
-			"name": "gosend-order",
+			"name": "Gosend Order",
 			"item": [
 				{
-					"name": "gosendOrder",
+					"name": "Gosendorder",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -5805,7 +5805,7 @@
 								"{locale}",
 								"salesorder",
 								"gosend-order",
-								"{id}"
+								"gosendOrder"
 							],
 							"query": null
 						},
@@ -5844,10 +5844,10 @@
 			"response": null
 		},
 		{
-			"name": "list",
+			"name": "List",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -5909,10 +5909,10 @@
 			"response": null
 		},
 		{
-			"name": "update-collection-info",
+			"name": "Update Collection Info",
 			"item": [
 				{
-					"name": "updateCollectionInfo",
+					"name": "Updatecollectioninfo",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -5936,7 +5936,7 @@
 								"{locale}",
 								"salesorder",
 								"update-collection-info",
-								"{id}"
+								"updateCollectionInfo"
 							],
 							"query": null
 						},
@@ -5975,10 +5975,10 @@
 			"response": null
 		},
 		{
-			"name": "update-payment-online",
+			"name": "Update Payment Online",
 			"item": [
 				{
-					"name": "updatePaymentOnline",
+					"name": "Updatepaymentonline",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6002,7 +6002,7 @@
 								"{locale}",
 								"salesorder",
 								"update-payment-online",
-								"{id}"
+								"updatePaymentOnline"
 							],
 							"query": null
 						},
@@ -6041,10 +6041,10 @@
 			"response": null
 		},
 		{
-			"name": "update-status-online",
+			"name": "Update Status Online",
 			"item": [
 				{
-					"name": "updateStatusOnline",
+					"name": "Updatestatusonline",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6068,7 +6068,7 @@
 								"{locale}",
 								"salesorder",
 								"update-status-online",
-								"{id}"
+								"updateStatusOnline"
 							],
 							"query": null
 						},
@@ -6107,10 +6107,10 @@
 			"response": null
 		},
 		{
-			"name": "salesreturn",
+			"name": "Salesreturn",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6149,7 +6149,7 @@
 					"response": null
 				},
 				{
-					"name": "posting",
+					"name": "Posting",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6189,7 +6189,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6212,7 +6212,7 @@
 								"{domain}",
 								"{locale}",
 								"salesreturn",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -6251,10 +6251,10 @@
 			"response": null
 		},
 		{
-			"name": "selforder",
+			"name": "Selforder",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6293,7 +6293,7 @@
 					"response": null
 				},
 				{
-					"name": "accept",
+					"name": "Accept",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6333,7 +6333,7 @@
 					"response": null
 				},
 				{
-					"name": "complete",
+					"name": "Complete",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6373,7 +6373,7 @@
 					"response": null
 				},
 				{
-					"name": "count",
+					"name": "Count",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6413,7 +6413,7 @@
 					"response": null
 				},
 				{
-					"name": "delivering",
+					"name": "Delivering",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6453,7 +6453,7 @@
 					"response": null
 				},
 				{
-					"name": "receive-pay",
+					"name": "Receive Pay",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6493,7 +6493,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6516,7 +6516,7 @@
 								"{domain}",
 								"{locale}",
 								"selforder",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -6555,10 +6555,10 @@
 			"response": null
 		},
 		{
-			"name": "settlement",
+			"name": "Settlement",
 			"item": [
 				{
-					"name": "account",
+					"name": "Account",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6598,7 +6598,7 @@
 					"response": null
 				},
 				{
-					"name": "addendum-download",
+					"name": "Addendum Download",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6638,7 +6638,7 @@
 					"response": null
 				},
 				{
-					"name": "selforder",
+					"name": "Selforder",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6700,10 +6700,10 @@
 			"response": null
 		},
 		{
-			"name": "shift-balance",
+			"name": "Shift Balance",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6742,7 +6742,7 @@
 					"response": null
 				},
 				{
-					"name": "begin",
+					"name": "Begin",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6782,7 +6782,7 @@
 					"response": null
 				},
 				{
-					"name": "posting",
+					"name": "Posting",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6822,7 +6822,7 @@
 					"response": null
 				},
 				{
-					"name": "update-inex-transactions",
+					"name": "Update Inex Transactions",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -6862,7 +6862,7 @@
 					"response": null
 				},
 				{
-					"name": "show",
+					"name": "Show",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6885,7 +6885,7 @@
 								"{domain}",
 								"{locale}",
 								"shift-balance",
-								"{id}"
+								"show"
 							],
 							"query": null
 						},
@@ -6924,10 +6924,10 @@
 			"response": null
 		},
 		{
-			"name": "shipping-city",
+			"name": "Shipping City",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -6988,10 +6988,10 @@
 			"response": null
 		},
 		{
-			"name": "shipping-city-subdistrict",
+			"name": "Shipping City Subdistrict",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -7052,10 +7052,10 @@
 			"response": null
 		},
 		{
-			"name": "shipping-cost",
+			"name": "Shipping Cost",
 			"item": [
 				{
-					"name": "check",
+					"name": "Check",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7117,10 +7117,10 @@
 			"response": null
 		},
 		{
-			"name": "shipping",
+			"name": "Shipping",
 			"item": [
 				{
-					"name": "cancel-request-pickup",
+					"name": "Cancel Request Pickup",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7160,7 +7160,7 @@
 					"response": null
 				},
 				{
-					"name": "couriers",
+					"name": "Couriers",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -7200,7 +7200,7 @@
 					"response": null
 				},
 				{
-					"name": "download-shipping-label",
+					"name": "Download Shipping Label",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -7240,7 +7240,7 @@
 					"response": null
 				},
 				{
-					"name": "request-pickup",
+					"name": "Request Pickup",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7280,7 +7280,7 @@
 					"response": null
 				},
 				{
-					"name": "terms-and-conditions",
+					"name": "Terms And Conditions",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7320,7 +7320,7 @@
 					"response": null
 				},
 				{
-					"name": "time-slot",
+					"name": "Time Slot",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -7382,10 +7382,10 @@
 			"response": null
 		},
 		{
-			"name": "order-detail",
+			"name": "Order Detail",
 			"item": [
 				{
-					"name": "orderDetail",
+					"name": "Orderdetail",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -7409,7 +7409,7 @@
 								"{locale}",
 								"shipping",
 								"order-detail",
-								"{id}"
+								"orderDetail"
 							],
 							"query": null
 						},
@@ -7448,10 +7448,10 @@
 			"response": null
 		},
 		{
-			"name": "shopeepay-payment",
+			"name": "Shopeepay Payment",
 			"item": [
 				{
-					"name": "acknowledge",
+					"name": "Acknowledge",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7491,7 +7491,7 @@
 					"response": null
 				},
 				{
-					"name": "check",
+					"name": "Check",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7531,7 +7531,7 @@
 					"response": null
 				},
 				{
-					"name": "pay",
+					"name": "Pay",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7571,7 +7571,7 @@
 					"response": null
 				},
 				{
-					"name": "refund",
+					"name": "Refund",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7633,10 +7633,10 @@
 			"response": null
 		},
 		{
-			"name": "staff",
+			"name": "Staff",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -7697,10 +7697,10 @@
 			"response": null
 		},
 		{
-			"name": "state",
+			"name": "State",
 			"item": [
 				{
-					"name": "index",
+					"name": "Index",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -7761,10 +7761,10 @@
 			"response": null
 		},
 		{
-			"name": "auth",
+			"name": "Auth",
 			"item": [
 				{
-					"name": "login",
+					"name": "Login",
 					"item": null,
 					"request": {
 						"method": "POST",
@@ -7803,7 +7803,7 @@
 					"response": null
 				},
 				{
-					"name": "logout",
+					"name": "Logout",
 					"item": null,
 					"request": {
 						"method": "GET",
@@ -7864,10 +7864,10 @@
 			"response": null
 		},
 		{
-			"name": "sanctum",
+			"name": "Sanctum",
 			"item": [
 				{
-					"name": "csrf-cookie",
+					"name": "Csrf Cookie",
 					"item": null,
 					"request": {
 						"method": "GET",

@@ -13,7 +13,11 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/joho/godotenv"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
+
+const CLOSURE string = "Closure"
 
 type RequestUrlQuery struct {
 	Key   string `json:"key"`
@@ -70,30 +74,112 @@ type PostmanCollection struct {
 	Items []PostmanCollectionItem `json:"item"`
 }
 
-func pathSliceModifier(formatPathSlice []string, path []string, route Route) []string {
-	if route.Action != "Closure" {
+func pathSliceModifier(path []string, route Route) []string {
+	if route.Action != CLOSURE {
 		if strings.Split(route.Action, "@")[1] == "index" {
 			newName := "index"
-			formatPathSlice = append(formatPathSlice, newName)
+			path = append(path, newName)
 		}
 
 		if strings.Contains(path[len(path)-1], "{") {
-			formatPathSlice[len(formatPathSlice)-1] = strings.Split(route.Action, "@")[1]
-		} else {
-			// fmt.Println(routeIndex, ":", formatPathSlice)
+			path[len(path)-1] = strings.Split(route.Action, "@")[1]
 		}
 	}
 
-	return formatPathSlice
+	return path
 }
 
 type Route struct {
 	Name       string   `json:"name"`
 	Method     string   `json:"method"`
 	Uri        string   `json:"uri"`
-	FormatPath string   `json:"uri_without_last"`
 	Action     string   `json:"action"`
 	Middleware []string `json:"middleware"`
+}
+
+func collectionItemNaming(path []string, isFolder bool) string {
+	targetIndex := len(path) - 1
+	if isFolder {
+		targetIndex = len(path) - 2
+	}
+
+	return cases.Title(language.Tag{}).String(strings.Replace(path[targetIndex], "-", " ", -1))
+}
+
+func makeCollection(routes *[]Route) []PostmanCollectionItem {
+	collectionItems := []PostmanCollectionItem{}
+
+	for _, route := range *routes {
+		if route.Uri == "" && route.Method == "" {
+			continue
+		}
+
+		if route.Method == "GET|HEAD" {
+			route.Method = "GET"
+		}
+
+		pathSlice := strings.Split(route.Uri, "/")
+		formatedPathSlice := pathSliceModifier(pathSlice, route)
+		formatedPath := strings.Join(formatedPathSlice[:len(formatedPathSlice)-1], "/")
+
+		newItem := PostmanCollectionItem{
+			Name: collectionItemNaming(formatedPathSlice, false),
+			Request: ItemRequest{
+				Method: route.Method,
+				Headers: []RequestHeader{
+					{
+						Key:   "Content-Type",
+						Value: "application/json",
+						Type:  "text",
+					},
+				},
+				Url: RequestUrl{
+					Raw:  "http://localhost:8000/" + route.Uri,
+					Host: []string{"localhost:8000"},
+					Path: pathSlice,
+				},
+			},
+		}
+
+		collectionFolderName := collectionItemNaming(formatedPathSlice, true)
+
+		if len(collectionItems) == 0 {
+			collectionItems = append(collectionItems, PostmanCollectionItem{
+				FormatPath: formatedPath,
+				Name:       collectionFolderName,
+				Items:      []PostmanCollectionItem{newItem},
+			})
+		} else {
+			collectionItem := collectionItems[len(collectionItems)-1]
+
+			if collectionItem.FormatPath == formatedPath {
+				if collectionItems[len(collectionItems)-1].FormatPath == collectionItem.FormatPath {
+					collectionItems[len(collectionItems)-1].Items = append(collectionItems[len(collectionItems)-1].Items, newItem)
+				} else {
+					collectionItem.Items = append(collectionItem.Items, newItem)
+				}
+			} else {
+				existsItemIndex := -1
+				for i, collectionItem := range collectionItems {
+					if collectionItem.Name == collectionFolderName {
+						existsItemIndex = i
+					}
+				}
+
+				if existsItemIndex >= 0 {
+					collectionItems[existsItemIndex].Items = append(collectionItems[existsItemIndex].Items, newItem)
+				} else {
+					collectionItems = append(collectionItems, PostmanCollectionItem{
+						FormatPath: formatedPath,
+						Name:       collectionFolderName,
+						Items:      []PostmanCollectionItem{newItem},
+					})
+				}
+			}
+		}
+	}
+
+	return collectionItems
 }
 
 func main() {
@@ -113,79 +199,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-	structRoutes := []Route{}
-	err = json.Unmarshal(output, &structRoutes)
+	routes := []Route{}
+	err = json.Unmarshal(output, &routes)
 	if err != nil {
 		log.Fatal(err)
-	}
-
-	collectionItems := []PostmanCollectionItem{}
-	for _, route := range structRoutes {
-		if route.Uri == "" && route.Method == "" {
-			continue
-		}
-
-		if route.Method == "GET|HEAD" {
-			route.Method = "GET"
-		}
-
-		path := strings.Split(route.Uri, "/")
-		formatPathSlice := pathSliceModifier(strings.Split(route.Uri, "/"), path, route)
-		route.FormatPath = strings.Join(formatPathSlice[:len(formatPathSlice)-1], "/")
-
-		collectionFolderName := formatPathSlice[len(formatPathSlice)-2]
-		newItem := PostmanCollectionItem{
-			Name: formatPathSlice[len(formatPathSlice)-1],
-			Request: ItemRequest{
-				Method: route.Method,
-				Headers: []RequestHeader{
-					{
-						Key:   "Content-Type",
-						Value: "application/json",
-						Type:  "text",
-					},
-				},
-				Url: RequestUrl{
-					Raw:  "http://localhost:8000/" + route.Uri,
-					Host: []string{"localhost:8000"},
-					Path: path,
-				},
-			},
-		}
-		if len(collectionItems) == 0 {
-			collectionItems = append(collectionItems, PostmanCollectionItem{
-				FormatPath: route.FormatPath,
-				Name:       collectionFolderName,
-				Items:      []PostmanCollectionItem{newItem},
-			})
-		} else {
-			collectionItem := collectionItems[len(collectionItems)-1]
-
-			if collectionItem.FormatPath == route.FormatPath {
-				if collectionItems[len(collectionItems)-1].FormatPath == collectionItem.FormatPath {
-					collectionItems[len(collectionItems)-1].Items = append(collectionItems[len(collectionItems)-1].Items, newItem)
-				} else {
-					collectionItem.Items = append(collectionItem.Items, newItem)
-				}
-			} else {
-				existsItemIndex := -1
-				for i, collectionItem := range collectionItems {
-					if collectionItem.Name == collectionFolderName {
-						existsItemIndex = i
-					}
-				}
-
-				if existsItemIndex >= 0 {
-					collectionItems[existsItemIndex].Items = append(collectionItems[existsItemIndex].Items, newItem)
-				} else {
-					collectionItems = append(collectionItems, PostmanCollectionItem{
-						FormatPath: route.FormatPath,
-						Name:       collectionFolderName,
-						Items:      []PostmanCollectionItem{newItem},
-					})
-				}
-			}
-		}
 	}
 
 	newPostmanCollection := PostmanCollection{
@@ -195,7 +212,7 @@ func main() {
 			Schema:     "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 			ExporterId: strconv.Itoa(int(time.Now().Unix())),
 		},
-		Items: collectionItems,
+		Items: makeCollection(&routes),
 	}
 
 	for _, item := range newPostmanCollection.Items {
