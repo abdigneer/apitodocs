@@ -22,7 +22,7 @@ func collectionItemNaming(path []string, isFolder bool) string {
 	return cases.Title(language.Tag{}).String(strings.Replace(path[targetIndex], "-", " ", -1))
 }
 
-func MakeCollection() postman.Collection {
+func MakeCollection(useRouteParam *bool, sanitizeRouteParam *bool) postman.Collection {
 	routes := []route{}
 	err := json.Unmarshal(execute(), &routes)
 	if err != nil {
@@ -31,7 +31,7 @@ func MakeCollection() postman.Collection {
 
 	return postman.Collection{
 		Info:  makeInfo(),
-		Items: makeItems(&routes),
+		Items: makeItems(&routes, useRouteParam, sanitizeRouteParam),
 	}
 }
 
@@ -44,8 +44,7 @@ func makeInfo() postman.CollectionInfo {
 	}
 }
 
-func makeItems(routes *[]route) []postman.CollectionItem {
-
+func makeItems(routes *[]route, useRouteParam *bool, sanitizeRouteParam *bool) []postman.CollectionItem {
 	collectionItems := []postman.CollectionItem{}
 
 	for _, route := range *routes {
@@ -55,6 +54,16 @@ func makeItems(routes *[]route) []postman.CollectionItem {
 
 		if route.Method == "GET|HEAD" {
 			route.Method = "GET"
+		}
+
+		if *useRouteParam {
+			route.Uri = strings.Replace(route.Uri, "{", "{{", -1)
+			route.Uri = strings.Replace(route.Uri, "}", "}}", -1)
+		}
+
+		if *sanitizeRouteParam {
+			route.Uri = strings.Replace(route.Uri, "{", "", -1)
+			route.Uri = strings.Replace(route.Uri, "}", "", -1)
 		}
 
 		pathSlice := strings.Split(route.Uri, "/")

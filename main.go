@@ -16,6 +16,7 @@ const PROTOCOL = "http"
 var fromFlag *string
 var baseUrlFlag *string
 var useRouteParam *bool
+var sanitizeRouteParam *bool
 
 func main() {
 	helpers.LoadEnv()
@@ -32,13 +33,15 @@ func main() {
 func flagParser() {
 	baseUrlFlag = flag.String("base-url", BASE_URL, "Custom base url")
 	fromFlag = flag.String("from", PHP73_LARAVEL8, "Laravel version")
+	useRouteParam = flag.Bool("use-route-param", false, "Use route parameter")
+	sanitizeRouteParam = flag.Bool("sanitize-route-param", false, "Sanitize route parameter")
 	flag.Parse()
 }
 
 func collectionFrom(postmanCollection *postman.Collection) {
 	switch *fromFlag {
 	case PHP73_LARAVEL8:
-		*postmanCollection = laravel.MakeCollection()
+		*postmanCollection = laravel.MakeCollection(useRouteParam, sanitizeRouteParam)
 	}
 }
 
