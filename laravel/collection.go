@@ -58,6 +58,7 @@ func makeItems(routes *[]route) []postman.CollectionItem {
 		}
 
 		pathSlice := strings.Split(route.Uri, "/")
+
 		formatedPathSlice := pathSliceModifier(pathSlice, route)
 		formatedPath := strings.Join(formatedPathSlice[:len(formatedPathSlice)-1], "/")
 

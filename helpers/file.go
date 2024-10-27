@@ -1,6 +1,9 @@
 package helpers
 
 import (
+	"apitodocs/postman"
+	"encoding/json"
+	"log"
 	"os"
 	"path/filepath"
 )
@@ -11,7 +14,7 @@ func IsInDevEnv() bool {
 	return err == nil
 }
 
-func GetCurrentPath() string {
+func getCurrentPath() string {
 	if IsInDevEnv() {
 		currentDir, err := os.Getwd()
 		if err != nil {
@@ -27,4 +30,13 @@ func GetCurrentPath() string {
 	}
 
 	return filepath.Dir(exePath) + "/"
+}
+
+func ExportToFileAsJson(postmanCollection postman.Collection) {
+	result, err := json.MarshalIndent(postmanCollection, "", "\t")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	os.WriteFile(getCurrentPath()+"collection.json", result, 0644)
 }
