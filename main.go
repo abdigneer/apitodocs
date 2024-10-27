@@ -5,6 +5,7 @@ import (
 	"apitodocs/laravel"
 	"apitodocs/postman"
 	"flag"
+	"log"
 	"strings"
 )
 
@@ -35,7 +36,12 @@ func flagParser() {
 	fromFlag = flag.String("from", PHP73_LARAVEL8, "Laravel version")
 	useRouteParam = flag.Bool("use-route-param", false, "Use route parameter")
 	sanitizeRouteParam = flag.Bool("sanitize-route-param", false, "Sanitize route parameter")
+
 	flag.Parse()
+
+	if *useRouteParam && *sanitizeRouteParam {
+		log.Fatal("cannot use both use-route-param and sanitize-route-param")
+	}
 }
 
 func collectionFrom(postmanCollection *postman.Collection) {
