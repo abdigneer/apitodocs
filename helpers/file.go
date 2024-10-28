@@ -1,7 +1,6 @@
 package helpers
 
 import (
-	"apitodocs/postman"
 	"encoding/json"
 	"log"
 	"os"
@@ -32,11 +31,11 @@ func getCurrentPath() string {
 	return filepath.Dir(exePath) + "/"
 }
 
-func ExportToFileAsJson(postmanCollection postman.Collection) {
-	result, err := json.MarshalIndent(postmanCollection, "", "\t")
+func ExportToFileAsJson(v any, filename string) {
+	result, err := json.MarshalIndent(v, "", "\t")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	os.WriteFile(getCurrentPath()+"collection.json", result, 0644)
+	os.WriteFile(getCurrentPath()+filename, result, 0644)
 }
