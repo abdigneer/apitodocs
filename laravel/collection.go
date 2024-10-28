@@ -1,6 +1,7 @@
 package laravel
 
 import (
+	"apitodocs/helpers"
 	"apitodocs/postman"
 	"encoding/json"
 	"log"
@@ -28,6 +29,8 @@ func MakeCollection(useRouteParam *bool, sanitizeRouteParam *bool) postman.Colle
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	helpers.ExportToFileAsJson(routes, "routes.json")
 
 	return postman.Collection{
 		Info:  makeInfo(),
