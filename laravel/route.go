@@ -1,6 +1,8 @@
 package laravel
 
-import "strings"
+import (
+	"strings"
+)
 
 const CLOSURE string = "Closure"
 
@@ -14,9 +16,11 @@ type route struct {
 
 func pathSliceModifier(path []string, route route) []string {
 	if route.Action != CLOSURE {
-		if strings.Split(route.Action, "@")[1] == "index" {
-			newName := "index"
-			path = append(path, newName)
+		if len(strings.Split(route.Action, "@")) > 1 {
+			if strings.Split(route.Action, "@")[1] == "index" {
+				newName := "index"
+				path = append(path, newName)
+			}
 		}
 
 		if strings.Contains(path[len(path)-1], "{") {
