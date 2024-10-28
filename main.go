@@ -9,8 +9,6 @@ import (
 	"strings"
 )
 
-// currently support laravel 8 only
-const PHP73_LARAVEL8 string = "php73-laravel8"
 const BASE_URL = "http://localhost:8080"
 const PROTOCOL = "http"
 
@@ -28,12 +26,12 @@ func main() {
 
 	collectionFrom(&postmanCollection)
 
-	helpers.ExportToFileAsJson(postmanCollection)
+	helpers.ExportToFileAsJson(postmanCollection, "collection.json")
 }
 
 func flagParser() {
 	baseUrlFlag = flag.String("base-url", BASE_URL, "Custom base url")
-	fromFlag = flag.String("from", PHP73_LARAVEL8, "Laravel version")
+	fromFlag = flag.String("from", laravel.PHP73_LARAVEL8, "Laravel version \nSupported: php73-laravel8, php81-laravel9")
 	useRouteParam = flag.Bool("use-route-param", false, "Use route parameter")
 	sanitizeRouteParam = flag.Bool("sanitize-route-param", false, "Sanitize route parameter")
 
@@ -46,7 +44,11 @@ func flagParser() {
 
 func collectionFrom(postmanCollection *postman.Collection) {
 	switch *fromFlag {
-	case PHP73_LARAVEL8:
+	case laravel.PHP73_LARAVEL8:
+		laravel.Version = laravel.PHP73_LARAVEL8
+		*postmanCollection = laravel.MakeCollection(useRouteParam, sanitizeRouteParam)
+	case laravel.PHP81_LARAVEL9:
+		laravel.Version = laravel.PHP81_LARAVEL9
 		*postmanCollection = laravel.MakeCollection(useRouteParam, sanitizeRouteParam)
 	}
 }
