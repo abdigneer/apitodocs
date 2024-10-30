@@ -5,6 +5,7 @@ import (
 	"apitodocs/laravel"
 	"apitodocs/postman"
 	"flag"
+	"fmt"
 	"log"
 	"strings"
 )
@@ -26,6 +27,8 @@ func main() {
 	postmanCollection := postman.Collection{}
 
 	collectionFrom(&postmanCollection)
+
+	printCollection(postmanCollection)
 
 	helpers.ExportToFileAsJson(postmanCollection, "collection.json")
 }
@@ -60,5 +63,14 @@ func flagModifier() {
 	if !strings.Contains(*baseUrlFlag, "http://") && !strings.Contains(*baseUrlFlag, "https://") {
 		baseUrl := PROTOCOL + "://" + *baseUrlFlag
 		*baseUrlFlag = baseUrl
+	}
+}
+
+func printCollection(postmanCollection postman.Collection) {
+	for _, item := range postmanCollection.Items {
+		fmt.Println(item.Name)
+		for _, subItem := range item.Items {
+			fmt.Println("--", subItem.Name, ":", subItem.Request.Url.Raw)
+		}
 	}
 }
