@@ -4,22 +4,29 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"strings"
 )
 
 func execute() []byte {
-	executable := os.Getenv("EXECUTABLE")
+	phpExec := os.Getenv("PHP")
 
 	executables := []string{}
 	switch Version {
 	case PHP73_LARAVEL8:
+		if os.Getenv("PHP73") != "" {
+			phpExec = os.Getenv("PHP73")
+		}
+
 		executables = append(
-			strings.Split(executable, " "),
+			[]string{phpExec, Location + "/artisan"},
 			"route:list", "--columns=name,method,uri,middleware,action", "--json", "--sort=uri",
 		)
 	case PHP81_LARAVEL9:
+		if os.Getenv("PHP81") != "" {
+			phpExec = os.Getenv("PHP81")
+		}
+
 		executables = append(
-			strings.Split(executable, " "),
+			[]string{phpExec, Location + "/artisan"},
 			"route:list", "--json", "--sort=uri",
 		)
 	}

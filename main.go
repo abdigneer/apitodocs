@@ -16,6 +16,7 @@ var fromFlag *string
 var baseUrlFlag *string
 var useRouteParam *bool
 var sanitizeRouteParam *bool
+var projectLocation *string
 
 func main() {
 	helpers.LoadEnv()
@@ -34,6 +35,7 @@ func flagParser() {
 	fromFlag = flag.String("from", laravel.PHP73_LARAVEL8, "Laravel version \nSupported: php73-laravel8, php81-laravel9")
 	useRouteParam = flag.Bool("use-route-param", false, "Use route parameter")
 	sanitizeRouteParam = flag.Bool("sanitize-route-param", false, "Sanitize route parameter")
+	projectLocation = flag.String("location", "", "Project location")
 
 	flag.Parse()
 
@@ -46,11 +48,12 @@ func collectionFrom(postmanCollection *postman.Collection) {
 	switch *fromFlag {
 	case laravel.PHP73_LARAVEL8:
 		laravel.Version = laravel.PHP73_LARAVEL8
-		*postmanCollection = laravel.MakeCollection(useRouteParam, sanitizeRouteParam)
 	case laravel.PHP81_LARAVEL9:
 		laravel.Version = laravel.PHP81_LARAVEL9
-		*postmanCollection = laravel.MakeCollection(useRouteParam, sanitizeRouteParam)
 	}
+
+	laravel.Location = *projectLocation
+	*postmanCollection = laravel.MakeCollection(useRouteParam, sanitizeRouteParam)
 }
 
 func flagModifier() {
