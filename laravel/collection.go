@@ -54,10 +54,7 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 			route.Method = "GET"
 		}
 
-		if *useRouteParam {
-			route.Uri = strings.Replace(route.Uri, "{", "{{", -1)
-			route.Uri = strings.Replace(route.Uri, "}", "}}", -1)
-		}
+		usingRouteParam(&route.Uri, useRouteParam)
 
 		pathSlice := strings.Split(route.Uri, "/")
 

@@ -19,3 +19,10 @@ func removingRouteParam(routeUri string, removeRouteParam *bool) string {
 	}
 	return routeUri
 }
+
+func usingRouteParam(routeUri *string, useRouteParam *bool) {
+	if *useRouteParam {
+		*routeUri = strings.Replace(*routeUri, "{", "{{", -1)
+		*routeUri = strings.Replace(*routeUri, "}", "}}", -1)
+	}
+}
