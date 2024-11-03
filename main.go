@@ -39,7 +39,7 @@ func flagParser() {
 
 	flag.Parse()
 
-	baseUrlSanitazion()
+	baseUrlSanitation()
 	fmt.Println(*baseUrlFlag)
 
 	if *useRouteParam && *removeRouteParam {
@@ -54,8 +54,16 @@ func flagParser() {
 	}
 }
 
-func baseUrlSanitazion() {
-	if !strings.Contains(*baseUrlFlag, "http://") && !strings.Contains(*baseUrlFlag, "https://") {
+func baseUrlSanitation() {
+	full := strings.Split(*baseUrlFlag, "://")
+	if len(full) > 1 {
+		protocol := full[0]
+		base := full[1]
+
+		if protocol != "http" && protocol != "https" {
+			*baseUrlFlag = PROTOCOL + "://" + base
+		}
+	} else {
 		*baseUrlFlag = PROTOCOL + "://" + *baseUrlFlag
 	}
 }
