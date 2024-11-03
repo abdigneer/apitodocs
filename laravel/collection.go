@@ -14,11 +14,12 @@ import (
 	"golang.org/x/text/language"
 )
 
-func collectionItemNaming(path []string, isFolder bool) string {
-	targetIndex := len(path) - 1
-	if isFolder {
-		targetIndex = len(path) - 2
-	}
+const ITEM_NAMING = 1
+const FOLDER_NAMING = 2
+const CHILD_PARAM_NAMING = 3
+
+func collectionItemNaming(path []string, fromLast int) string {
+	targetIndex := len(path) - fromLast
 
 	return cases.Title(language.Tag{}).String(strings.Replace(path[targetIndex], "-", " ", -1))
 }
@@ -78,7 +79,7 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 		formatedPath := strings.Join(formatedPathSlice[:len(formatedPathSlice)-1], "/")
 
 		newItem := postman.CollectionItem{
-			Name: removingRouteParam(collectionItemNaming(formatedPathSlice, false), removeRouteParam),
+			Name: removingRouteParam(collectionItemNaming(formatedPathSlice, ITEM_NAMING), removeRouteParam),
 			Request: postman.ItemRequest{
 				Method: route.Method,
 				Headers: []postman.RequestHeader{
@@ -96,7 +97,7 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 			},
 		}
 
-		collectionFolderName := collectionItemNaming(formatedPathSlice, true)
+		collectionFolderName := collectionItemNaming(formatedPathSlice, FOLDER_NAMING)
 
 		if len(collectionItems) == 0 {
 			collectionItems = append(collectionItems, postman.CollectionItem{
@@ -110,7 +111,7 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 			if collectionItem.FormatPath == formatedPath {
 				collectionItems[len(collectionItems)-1].Items = append(collectionItems[len(collectionItems)-1].Items, newItem)
 			} else {
-				index := findSameItemByFolderName(collectionItems, collectionFolderName)
+				index := findSameItemByName(collectionItems, collectionFolderName)
 				if index > -1 {
 					collectionItems[index].Items = append(collectionItems[index].Items, newItem)
 				} else {
@@ -123,9 +124,9 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 						}
 
 						if routeSub == formatedPathSlice[len(formatedPathSlice)-3] || routeSub == "id" {
-							index = findSameItemByFolderName(
+							index = findSameItemByName(
 								collectionItems,
-								cases.Title(language.Tag{}).String(strings.Replace(formatedPathSlice[len(formatedPathSlice)-3], "-", " ", -1)))
+								collectionItemNaming(formatedPathSlice, CHILD_PARAM_NAMING))
 						}
 					}
 
@@ -146,10 +147,10 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 	return collectionItems
 }
 
-func findSameItemByFolderName(collectionItems []postman.CollectionItem, collectionFolderName string) int {
+func findSameItemByName(collectionItems []postman.CollectionItem, collectionItemName string) int {
 	sameItemIndex := -1
 	for i, collectionItem := range collectionItems {
-		if collectionItem.Name == collectionFolderName {
+		if collectionItem.Name == collectionItemName {
 			sameItemIndex = i
 		}
 	}
