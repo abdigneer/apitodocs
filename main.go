@@ -70,7 +70,7 @@ func printCollection(postmanCollection postman.Collection) {
 	for _, item := range postmanCollection.Items {
 		fmt.Println(item.Name)
 		for _, subItem := range item.Items {
-			fmt.Println("--", subItem.Name, ":", subItem.Request.Url.Raw)
+			fmt.Println("--", "[", subItem.Request.Method, "]", subItem.Name, ":", subItem.Request.Url.Raw)
 		}
 	}
 }
