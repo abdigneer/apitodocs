@@ -20,6 +20,9 @@ func pathSliceModifier(path []string, route route) []string {
 			if strings.Split(route.Action, "@")[1] == "index" {
 				newName := "index"
 				path = append(path, newName)
+			} else if strings.Split(route.Action, "@")[1] == "store" && route.Method == "POST" {
+				newName := "store"
+				path = append(path, newName)
 			}
 		}
 
