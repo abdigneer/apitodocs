@@ -18,12 +18,6 @@ const ITEM_NAMING = 1
 const FOLDER_NAMING = 2
 const CHILD_PARAM_NAMING = 3
 
-func collectionItemNaming(path []string, fromLast int) string {
-	targetIndex := len(path) - fromLast
-
-	return cases.Title(language.Tag{}).String(strings.Replace(path[targetIndex], "-", " ", -1))
-}
-
 func MakeCollection(useRouteParam *bool, removeRouteParam *bool) postman.Collection {
 	routes := []route{}
 	err := json.Unmarshal(execute(), &routes)
@@ -75,11 +69,11 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 
 		pathSlice := strings.Split(route.Uri, "/")
 
-		formatedPathSlice := pathSliceModifier(pathSlice, route)
-		formatedPath := strings.Join(formatedPathSlice[:len(formatedPathSlice)-1], "/")
+		itemPath := makeItemPath(pathSlice, route)
+		itemPathString := strings.Join(itemPath[:len(itemPath)-1], "/")
 
 		newItem := postman.CollectionItem{
-			Name: removingRouteParam(collectionItemNaming(formatedPathSlice, ITEM_NAMING), removeRouteParam),
+			Name: removingRouteParam(makeItemName(itemPath, ITEM_NAMING), removeRouteParam),
 			Request: postman.ItemRequest{
 				Method: route.Method,
 				Headers: []postman.RequestHeader{
@@ -97,18 +91,18 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 			},
 		}
 
-		collectionFolderName := collectionItemNaming(formatedPathSlice, FOLDER_NAMING)
+		collectionFolderName := makeItemName(itemPath, FOLDER_NAMING)
 
 		if len(collectionItems) == 0 {
 			collectionItems = append(collectionItems, postman.CollectionItem{
-				FormatPath: formatedPath,
-				Name:       removingRouteParam(collectionFolderName, removeRouteParam),
-				Items:      []postman.CollectionItem{newItem},
+				Path:  itemPathString,
+				Name:  removingRouteParam(collectionFolderName, removeRouteParam),
+				Items: []postman.CollectionItem{newItem},
 			})
 		} else {
 			collectionItem := collectionItems[len(collectionItems)-1]
 
-			if collectionItem.FormatPath == formatedPath {
+			if collectionItem.Path == itemPathString {
 				collectionItems[len(collectionItems)-1].Items = append(collectionItems[len(collectionItems)-1].Items, newItem)
 			} else {
 				index := findSameItemByName(collectionItems, collectionFolderName)
@@ -116,17 +110,17 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 					collectionItems[index].Items = append(collectionItems[index].Items, newItem)
 				} else {
 					index := -1
-					if len(formatedPathSlice) >= 3 {
-						routeSub := formatedPathSlice[len(formatedPathSlice)-2]
+					if len(itemPath) >= 3 {
+						routeSub := itemPath[len(itemPath)-2]
 						if strings.Contains(routeSub, "{") && strings.Contains(routeSub, "}") {
 							routeSub = strings.Replace(routeSub, "{", "", -1)
 							routeSub = strings.Replace(routeSub, "}", "", -1)
 						}
 
-						if routeSub == formatedPathSlice[len(formatedPathSlice)-3] || routeSub == "id" {
+						if routeSub == itemPath[len(itemPath)-3] || routeSub == "id" {
 							index = findSameItemByName(
 								collectionItems,
-								collectionItemNaming(formatedPathSlice, CHILD_PARAM_NAMING))
+								makeItemName(itemPath, CHILD_PARAM_NAMING))
 						}
 					}
 
@@ -134,9 +128,9 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 						collectionItems[index].Items = append(collectionItems[index].Items, newItem)
 					} else {
 						collectionItems = append(collectionItems, postman.CollectionItem{
-							FormatPath: formatedPath,
-							Name:       removingRouteParam(collectionFolderName, removeRouteParam),
-							Items:      []postman.CollectionItem{newItem},
+							Path:  itemPathString,
+							Name:  removingRouteParam(collectionFolderName, removeRouteParam),
+							Items: []postman.CollectionItem{newItem},
 						})
 					}
 				}
@@ -145,6 +139,32 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 	}
 
 	return collectionItems
+}
+
+func makeItemPath(path []string, route route) []string {
+	if route.Action != CLOSURE {
+		if len(strings.Split(route.Action, "@")) > 1 {
+			if strings.Split(route.Action, "@")[1] == "index" {
+				newName := "index"
+				path = append(path, newName)
+			} else if strings.Split(route.Action, "@")[1] == "store" && route.Method == "POST" {
+				newName := "store"
+				path = append(path, newName)
+			}
+		}
+
+		if strings.Contains(path[len(path)-1], "{") {
+			path[len(path)-1] = strings.Split(route.Action, "@")[1]
+		}
+	}
+
+	return path
+}
+
+func makeItemName(path []string, fromLast int) string {
+	targetIndex := len(path) - fromLast
+
+	return cases.Title(language.Tag{}).String(strings.Replace(path[targetIndex], "-", " ", -1))
 }
 
 func findSameItemByName(collectionItems []postman.CollectionItem, collectionItemName string) int {

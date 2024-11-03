@@ -43,11 +43,11 @@ type CollectionInfo struct {
 }
 
 type CollectionItem struct {
-	FormatPath string           `json:"-"`
-	Name       string           `json:"name"`
-	Items      []CollectionItem `json:"item"`
-	Request    ItemRequest      `json:"request"`
-	Response   []struct{}       `json:"response"`
+	Path     string           `json:"-"`
+	Name     string           `json:"name"`
+	Items    []CollectionItem `json:"item"`
+	Request  ItemRequest      `json:"request"`
+	Response []struct{}       `json:"response"`
 }
 
 type Collection struct {
