@@ -18,7 +18,7 @@ const ITEM_NAMING = 1
 const FOLDER_NAMING = 2
 const CHILD_PARAM_NAMING = 3
 
-func MakeCollection(useRouteParam *bool, removeRouteParam *bool) postman.Collection {
+func MakeCollection() postman.Collection {
 	routes := []route{}
 	err := json.Unmarshal(execute(), &routes)
 	if err != nil {
@@ -29,7 +29,7 @@ func MakeCollection(useRouteParam *bool, removeRouteParam *bool) postman.Collect
 
 	return postman.Collection{
 		Info:  makeInfo(),
-		Items: makeItems(&routes, useRouteParam, removeRouteParam),
+		Items: makeItems(&routes),
 	}
 }
 
@@ -42,7 +42,7 @@ func makeInfo() postman.CollectionInfo {
 	}
 }
 
-func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []postman.CollectionItem {
+func makeItems(routes *[]route) []postman.CollectionItem {
 	collectionItems := []postman.CollectionItem{}
 
 	for _, route := range *routes {
@@ -54,15 +54,13 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 			route.Method = "GET"
 		}
 
-		usingRouteParam(&route.Uri, useRouteParam)
-
 		pathSlice := strings.Split(route.Uri, "/")
 
 		itemPath := makeItemPath(pathSlice, route)
 		itemPathString := strings.Join(itemPath[:len(itemPath)-1], "/")
 
 		newItem := postman.CollectionItem{
-			Name: removingRouteParam(makeItemName(itemPath, ITEM_NAMING), removeRouteParam),
+			Name: pathModifier(makeItemName(itemPath, ITEM_NAMING)),
 			Request: postman.ItemRequest{
 				Method: route.Method,
 				Headers: []postman.RequestHeader{
@@ -73,7 +71,7 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 					},
 				},
 				Url: postman.RequestUrl{
-					Raw:  "http://localhost:8000/" + removingRouteParam(route.Uri, removeRouteParam),
+					Raw:  "http://localhost:8000/" + pathModifier(route.Uri),
 					Host: []string{"localhost:8000"},
 					Path: pathSlice,
 				},
@@ -85,7 +83,7 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 		if len(collectionItems) == 0 {
 			collectionItems = append(collectionItems, postman.CollectionItem{
 				Path:  itemPathString,
-				Name:  removingRouteParam(collectionFolderName, removeRouteParam),
+				Name:  pathModifier(collectionFolderName),
 				Items: []postman.CollectionItem{newItem},
 			})
 		} else {
@@ -118,7 +116,7 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 					} else {
 						collectionItems = append(collectionItems, postman.CollectionItem{
 							Path:  itemPathString,
-							Name:  removingRouteParam(collectionFolderName, removeRouteParam),
+							Name:  pathModifier(collectionFolderName),
 							Items: []postman.CollectionItem{newItem},
 						})
 					}

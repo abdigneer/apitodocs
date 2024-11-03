@@ -15,8 +15,6 @@ const PROTOCOL = "http"
 
 var fromFlag *string
 var baseUrlFlag *string
-var useRouteParam *bool
-var removeRouteParam *bool
 var projectLocation *string
 
 func main() {
@@ -36,14 +34,21 @@ func main() {
 func flagParser() {
 	baseUrlFlag = flag.String("base-url", BASE_URL, "Custom base url")
 	fromFlag = flag.String("from", laravel.PHP73_LARAVEL8, "Laravel version \nSupported: php73-laravel8, php81-laravel9")
-	useRouteParam = flag.Bool("use-route-param", false, "Use route parameter")
-	removeRouteParam = flag.Bool("remove-route-param", false, "Remove route parameter")
+	useRouteParam := flag.Bool("use-route-param", false, "Use route parameter")
+	removeRouteParam := flag.Bool("remove-route-param", false, "Remove route parameter")
 	projectLocation = flag.String("location", "", "Project location")
 
 	flag.Parse()
 
 	if *useRouteParam && *removeRouteParam {
 		log.Fatal("cannot use both use-route-param and remove-route-param")
+	}
+	laravel.PathSetting = laravel.IGNORE_ROUTE
+	if *removeRouteParam {
+		laravel.PathSetting = laravel.REMOVE_ROUTE
+	}
+	if *useRouteParam {
+		laravel.PathSetting = laravel.USE_ROUTE
 	}
 }
 
@@ -56,7 +61,7 @@ func collectionFrom(postmanCollection *postman.Collection) {
 	}
 
 	laravel.Location = *projectLocation
-	*postmanCollection = laravel.MakeCollection(useRouteParam, removeRouteParam)
+	*postmanCollection = laravel.MakeCollection()
 }
 
 func flagModifier() {

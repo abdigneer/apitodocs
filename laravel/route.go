@@ -1,8 +1,16 @@
 package laravel
 
-import "strings"
+import (
+	"strings"
+)
 
 const CLOSURE string = "Closure"
+
+const IGNORE_ROUTE = 0
+const USE_ROUTE = 1
+const REMOVE_ROUTE = 2
+
+var PathSetting int
 
 type route struct {
 	Name       string   `json:"name"`
@@ -12,17 +20,15 @@ type route struct {
 	Middleware []string `json:"middleware"`
 }
 
-func removingRouteParam(routeUri string, removeRouteParam *bool) string {
-	if *removeRouteParam {
+func pathModifier(routeUri string) string {
+	if PathSetting == REMOVE_ROUTE {
 		routeUri = strings.Replace(routeUri, "{", "", -1)
 		routeUri = strings.Replace(routeUri, "}", "", -1)
 	}
-	return routeUri
-}
-
-func usingRouteParam(routeUri *string, useRouteParam *bool) {
-	if *useRouteParam {
-		*routeUri = strings.Replace(*routeUri, "{", "{{", -1)
-		*routeUri = strings.Replace(*routeUri, "}", "}}", -1)
+	if PathSetting == USE_ROUTE {
+		routeUri = strings.Replace(routeUri, "{", "{{", -1)
+		routeUri = strings.Replace(routeUri, "}", "}}", -1)
 	}
+
+	return routeUri
 }
