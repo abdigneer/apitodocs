@@ -42,14 +42,6 @@ func makeInfo() postman.CollectionInfo {
 	}
 }
 
-func removingRouteParam(routeUri string, removeRouteParam *bool) string {
-	if *removeRouteParam {
-		routeUri = strings.Replace(routeUri, "{", "", -1)
-		routeUri = strings.Replace(routeUri, "}", "", -1)
-	}
-	return routeUri
-}
-
 func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []postman.CollectionItem {
 	collectionItems := []postman.CollectionItem{}
 
