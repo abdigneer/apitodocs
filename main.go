@@ -20,7 +20,6 @@ var projectLocation *string
 func main() {
 	helpers.LoadEnv()
 	flagParser()
-	flagModifier()
 
 	postmanCollection := postman.Collection{}
 
@@ -40,6 +39,9 @@ func flagParser() {
 
 	flag.Parse()
 
+	baseUrlSanitazion()
+	fmt.Println(*baseUrlFlag)
+
 	if *useRouteParam && *removeRouteParam {
 		log.Fatal("cannot use both use-route-param and remove-route-param")
 	}
@@ -49,6 +51,12 @@ func flagParser() {
 	}
 	if *useRouteParam {
 		laravel.PathSetting = laravel.USE_ROUTE
+	}
+}
+
+func baseUrlSanitazion() {
+	if !strings.Contains(*baseUrlFlag, "http://") && !strings.Contains(*baseUrlFlag, "https://") {
+		*baseUrlFlag = PROTOCOL + "://" + *baseUrlFlag
 	}
 }
 
@@ -62,13 +70,6 @@ func collectionFrom(postmanCollection *postman.Collection) {
 
 	laravel.Location = *projectLocation
 	*postmanCollection = laravel.MakeCollection()
-}
-
-func flagModifier() {
-	if !strings.Contains(*baseUrlFlag, "http://") && !strings.Contains(*baseUrlFlag, "https://") {
-		baseUrl := PROTOCOL + "://" + *baseUrlFlag
-		*baseUrlFlag = baseUrl
-	}
 }
 
 func printCollection(postmanCollection postman.Collection) {
