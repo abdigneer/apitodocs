@@ -108,31 +108,51 @@ func makeItems(routes *[]route, useRouteParam *bool, removeRouteParam *bool) []p
 			collectionItem := collectionItems[len(collectionItems)-1]
 
 			if collectionItem.FormatPath == formatedPath {
-				if collectionItems[len(collectionItems)-1].FormatPath == collectionItem.FormatPath {
-					collectionItems[len(collectionItems)-1].Items = append(collectionItems[len(collectionItems)-1].Items, newItem)
-				} else {
-					collectionItem.Items = append(collectionItem.Items, newItem)
-				}
+				collectionItems[len(collectionItems)-1].Items = append(collectionItems[len(collectionItems)-1].Items, newItem)
 			} else {
-				existsItemIndex := -1
-				for i, collectionItem := range collectionItems {
-					if collectionItem.Name == collectionFolderName {
-						existsItemIndex = i
-					}
-				}
-
-				if existsItemIndex >= 0 {
-					collectionItems[existsItemIndex].Items = append(collectionItems[existsItemIndex].Items, newItem)
+				index := findSameItemByFolderName(collectionItems, collectionFolderName)
+				if index > -1 {
+					collectionItems[index].Items = append(collectionItems[index].Items, newItem)
 				} else {
-					collectionItems = append(collectionItems, postman.CollectionItem{
-						FormatPath: formatedPath,
-						Name:       removingRouteParam(collectionFolderName, removeRouteParam),
-						Items:      []postman.CollectionItem{newItem},
-					})
+					index := -1
+					if len(formatedPathSlice) >= 3 {
+						routeSub := formatedPathSlice[len(formatedPathSlice)-2]
+						if strings.Contains(routeSub, "{") && strings.Contains(routeSub, "}") {
+							routeSub = strings.Replace(routeSub, "{", "", -1)
+							routeSub = strings.Replace(routeSub, "}", "", -1)
+						}
+
+						if routeSub == formatedPathSlice[len(formatedPathSlice)-3] || routeSub == "id" {
+							index = findSameItemByFolderName(
+								collectionItems,
+								cases.Title(language.Tag{}).String(strings.Replace(formatedPathSlice[len(formatedPathSlice)-3], "-", " ", -1)))
+						}
+					}
+
+					if index > -1 {
+						collectionItems[index].Items = append(collectionItems[index].Items, newItem)
+					} else {
+						collectionItems = append(collectionItems, postman.CollectionItem{
+							FormatPath: formatedPath,
+							Name:       removingRouteParam(collectionFolderName, removeRouteParam),
+							Items:      []postman.CollectionItem{newItem},
+						})
+					}
 				}
 			}
 		}
 	}
 
 	return collectionItems
+}
+
+func findSameItemByFolderName(collectionItems []postman.CollectionItem, collectionFolderName string) int {
+	sameItemIndex := -1
+	for i, collectionItem := range collectionItems {
+		if collectionItem.Name == collectionFolderName {
+			sameItemIndex = i
+		}
+	}
+
+	return sameItemIndex
 }
