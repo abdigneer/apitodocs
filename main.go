@@ -16,6 +16,7 @@ const PROTOCOL = "http"
 var fromFlag *string
 var baseUrlFlag *string
 var projectLocation *string
+var debug *bool
 
 func main() {
 	helpers.LoadEnv()
@@ -25,7 +26,9 @@ func main() {
 
 	collectionFrom(&postmanCollection)
 
-	printCollection(postmanCollection)
+	if *debug {
+		printCollection(postmanCollection)
+	}
 
 	helpers.ExportToFileAsJson(postmanCollection, "collection.json")
 }
@@ -36,6 +39,7 @@ func flagParser() {
 	useRouteParam := flag.Bool("use-route-param", false, "Use route parameter")
 	removeRouteParam := flag.Bool("remove-route-param", false, "Remove route parameter")
 	projectLocation = flag.String("location", "", "Project location")
+	debug = flag.Bool("debug", false, "Show collection item in console")
 
 	flag.Parse()
 
