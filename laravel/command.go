@@ -6,6 +6,14 @@ import (
 	"os/exec"
 )
 
+func checkArtisan() {
+	_, err := os.Stat(Location + "/artisan")
+
+	if err != nil {
+		log.Fatal("laravel artisan not found")
+	}
+}
+
 func execute() []byte {
 	phpExec := os.Getenv("PHP")
 
@@ -16,6 +24,7 @@ func execute() []byte {
 			phpExec = os.Getenv("PHP73")
 		}
 
+		checkArtisan()
 		executables = append(
 			[]string{phpExec, Location + "/artisan"},
 			"route:list", "--columns=name,method,uri,middleware,action", "--json", "--sort=uri",
@@ -25,6 +34,7 @@ func execute() []byte {
 			phpExec = os.Getenv("PHP81")
 		}
 
+		checkArtisan()
 		executables = append(
 			[]string{phpExec, Location + "/artisan"},
 			"route:list", "--json", "--sort=uri",
