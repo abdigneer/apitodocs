@@ -69,19 +69,21 @@ func baseUrlSanitation() {
 }
 
 func collectionFrom(postmanCollection *postman.Collection) {
-	switch *fromFlag {
-	case laravel.PHP73_LARAVEL8:
-		laravel.Version = laravel.PHP73_LARAVEL8
-	case laravel.PHP81_LARAVEL9:
-		laravel.Version = laravel.PHP81_LARAVEL9
-	case laravel.PHP81_LARAVEL10:
-		laravel.Version = laravel.PHP81_LARAVEL10
-	default:
-		log.Fatal("Unsupported php - framework version")
+
+	for _, supportedVersion := range []string{
+		laravel.PHP73_LARAVEL8,
+		laravel.PHP81_LARAVEL9,
+		laravel.PHP81_LARAVEL10,
+	} {
+		if *fromFlag == supportedVersion {
+			laravel.Version = supportedVersion
+			laravel.Location = *projectLocation
+			*postmanCollection = laravel.MakeCollection()
+			return
+		}
 	}
 
-	laravel.Location = *projectLocation
-	*postmanCollection = laravel.MakeCollection()
+	log.Fatal("Unsupported php - framework version")
 }
 
 func printCollection(postmanCollection postman.Collection) {
