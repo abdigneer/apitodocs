@@ -35,7 +35,7 @@ func main() {
 
 func flagParser() {
 	baseUrlFlag = flag.String("base-url", BASE_URL, "Custom base url")
-	fromFlag = flag.String("from", laravel.PHP73_LARAVEL8, "Laravel version \nSupported: php73-laravel8, php81-laravel9")
+	fromFlag = flag.String("from", laravel.PHP73_LARAVEL8, "Laravel version \nSupported: php73-laravel8, php81-laravel9, php81-laravel10")
 	useRouteParam := flag.Bool("use-route-param", false, "Use route parameter")
 	removeRouteParam := flag.Bool("remove-route-param", false, "Remove route parameter")
 	projectLocation = flag.String("location", "", "Project location")
