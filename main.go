@@ -74,6 +74,8 @@ func collectionFrom(postmanCollection *postman.Collection) {
 		laravel.Version = laravel.PHP73_LARAVEL8
 	case laravel.PHP81_LARAVEL9:
 		laravel.Version = laravel.PHP81_LARAVEL9
+	case laravel.PHP81_LARAVEL10:
+		laravel.Version = laravel.PHP81_LARAVEL10
 	default:
 		log.Fatal("Unsupported php - framework version")
 	}

@@ -39,6 +39,16 @@ func execute() []byte {
 			[]string{phpExec, Location + "/artisan"},
 			"route:list", "--json", "--sort=uri",
 		)
+	case PHP81_LARAVEL10:
+		if os.Getenv("PHP81") != "" {
+			phpExec = os.Getenv("PHP81")
+		}
+
+		checkArtisan()
+		executables = append(
+			[]string{phpExec, Location + "/artisan"},
+			"route:list", "--json", "--sort=uri",
+		)
 	}
 
 	output, err := exec.Command(executables[0], executables[1:]...).Output()
