@@ -27,7 +27,7 @@ func main() {
 	collectionFrom(&postmanCollection)
 
 	if *debug {
-		printCollection(postmanCollection)
+		printResult(postmanCollection)
 	}
 
 	helpers.ExportToFileAsJson(postmanCollection, "collection.json")
@@ -44,7 +44,6 @@ func flagParser() {
 	flag.Parse()
 
 	baseUrlSanitation()
-	fmt.Println(*baseUrlFlag)
 
 	if *useRouteParam && *removeRouteParam {
 		log.Fatal("cannot use both use-route-param and remove-route-param")
@@ -90,7 +89,9 @@ func collectionFrom(postmanCollection *postman.Collection) {
 	log.Fatal("Unsupported php - framework version")
 }
 
-func printCollection(postmanCollection postman.Collection) {
+func printResult(postmanCollection postman.Collection) {
+	fmt.Println("base-url:", *baseUrlFlag, "\n", "--------------------------------")
+
 	for _, item := range postmanCollection.Items {
 		fmt.Println(item.Name)
 		for _, subItem := range item.Items {
