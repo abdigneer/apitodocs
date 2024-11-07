@@ -6,3 +6,4 @@ const PHP81_LARAVEL10 string = "php81-laravel10"
 
 var Version string
 var Location string
+var BaseUrl string

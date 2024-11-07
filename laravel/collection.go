@@ -71,8 +71,8 @@ func makeItems(routes *[]route) []postman.CollectionItem {
 					},
 				},
 				Url: postman.RequestUrl{
-					Raw:  "http://localhost:8000/" + pathModifier(route.Uri),
-					Host: []string{"localhost:8000"},
+					Raw:  BaseUrl + "/" + pathModifier(route.Uri),
+					Host: []string{BaseUrl},
 					Path: pathSlice,
 				},
 			},

@@ -81,6 +81,7 @@ func collectionFrom(postmanCollection *postman.Collection) {
 		if *fromFlag == supportedVersion {
 			laravel.Version = supportedVersion
 			laravel.Location = *projectLocation
+			laravel.BaseUrl = *baseUrlFlag
 			*postmanCollection = laravel.MakeCollection()
 			return
 		}
