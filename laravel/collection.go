@@ -54,6 +54,10 @@ func makeItems(routes *[]route) []postman.CollectionItem {
 			route.Method = "GET"
 		}
 
+		if route.Method == "PUT|PATCH" {
+			route.Method = "PUT"
+		}
+
 		pathSlice := strings.Split(route.Uri, "/")
 
 		itemPath := makeItemPath(pathSlice, route)
