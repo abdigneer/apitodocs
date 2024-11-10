@@ -45,6 +45,14 @@ func flagParser() {
 
 	flag.Parse()
 
+	if *debug {
+		fmt.Println("name:", *collectionNameFlag)
+		fmt.Println("from:", *fromFlag)
+		fmt.Println("use-route-param :", *useRouteParam)
+		fmt.Println("remove-route-param :", *removeRouteParam)
+		fmt.Println("location:", *projectLocation)
+	}
+
 	baseUrlSanitation()
 
 	if *useRouteParam && *removeRouteParam {
