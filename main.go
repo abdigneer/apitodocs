@@ -13,6 +13,7 @@ import (
 const BASE_URL = "http://localhost:8080"
 const PROTOCOL = "http"
 
+var collectionNameFlag *string
 var fromFlag *string
 var baseUrlFlag *string
 var projectLocation *string
@@ -34,6 +35,7 @@ func main() {
 }
 
 func flagParser() {
+	collectionNameFlag = flag.String("name", "collection API", "Custom postman collection name")
 	baseUrlFlag = flag.String("base-url", BASE_URL, "Custom base url")
 	fromFlag = flag.String("from", laravel.PHP73_LARAVEL8, "Laravel version \nSupported: php73-laravel8, php81-laravel9, php81-laravel10")
 	useRouteParam := flag.Bool("use-route-param", false, "Use route parameter")
@@ -82,6 +84,7 @@ func collectionFrom(postmanCollection *postman.Collection) {
 			laravel.Version = supportedVersion
 			laravel.Location = *projectLocation
 			laravel.BaseUrl = *baseUrlFlag
+			laravel.CollectionName = *collectionNameFlag
 			*postmanCollection = laravel.MakeCollection()
 			return
 		}

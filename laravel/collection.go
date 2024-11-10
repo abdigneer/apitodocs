@@ -36,7 +36,7 @@ func MakeCollection() postman.Collection {
 func makeInfo() postman.CollectionInfo {
 	return postman.CollectionInfo{
 		PostmanId:  uuid.New().String(),
-		Name:       "Api to collection",
+		Name:       CollectionName,
 		Schema:     "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		ExporterId: strconv.Itoa(int(time.Now().Unix())),
 	}
