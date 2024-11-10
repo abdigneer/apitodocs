@@ -20,10 +20,9 @@ type route struct {
 	Middleware []string `json:"middleware"`
 }
 
-func pathModifier(routeUri string) string {
+func uriModifier(routeUri string) string {
 	if PathSetting == REMOVE_ROUTE {
-		routeUri = strings.Replace(routeUri, "{", "", -1)
-		routeUri = strings.Replace(routeUri, "}", "", -1)
+		routeUri = removeRouteParamSyntax(routeUri)
 	}
 	if PathSetting == USE_ROUTE {
 		routeUri = strings.Replace(routeUri, "{", "{{", -1)
@@ -31,4 +30,13 @@ func pathModifier(routeUri string) string {
 	}
 
 	return routeUri
+}
+
+func removeRouteParamSyntax(text string) string {
+	if strings.Contains(text, "{") && strings.Contains(text, "}") {
+		text = strings.Replace(text, "{", "", -1)
+		text = strings.Replace(text, "}", "", -1)
+	}
+
+	return text
 }
